@@ -1,0 +1,85 @@
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/hoho_lib.lua", true))()
+local win = lib:Window("Cube X Hub","Blox Fruits",Color3.new(0.333333, 0.666667, 1))
+local tab = win:Tab("Main")
+local label = tab:Label("Label", properties)
+label:NewLabel("Here", properties)
+tab:Line()
+tab:Button("COPY DISCORD", function()
+    setclipboard('Geta#0983')
+end)
+local lon = tab:Toggle("Auto Chest", false, function(val)
+    _G.cac = val
+    while wait() do
+        if _G.cac == false then break end
+        pcall(function()
+            spawn(function()
+                if game.Players.LocalPlayer.Character:FindFirstChild('Head') then
+                    game.Players.LocalPlayer.Character.Head:Destroy()
+                    wait(5)
+                end
+            end)
+            spawn(function()
+                for dit,me in pairs(game.Workspace:GetChildren()) do
+                    if string.find(me.Name,'Chest') then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = me.CFrame
+                    end
+                end
+            end)
+        end)
+    end
+end)
+tab:Button("Hop Server", function()
+    --credit IY
+    if httprequest then
+		local servers = {}
+		local req = httprequest({Url = string.format("https://games.roblox.com/v1/games/%s/servers/Public?sortOrder=Asc&limit=100", game.PlaceId)})
+		local body = HttpService:JSONDecode(req.Body)
+		if body and body.data then
+			for i, v in next, body.data do
+				if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= game.JobId then
+					table.insert(servers, 1, v.id)
+				end 
+			end
+		end
+		if #servers > 0 then
+			game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)], game.Players.LocalPlayer)
+		else
+			print('cac')
+		end
+	end
+end)
+tab:Toggle("Anti Afk", false, function(val)
+    --credit IY
+    local GC = getconnections or get_signal_cons
+	if GC then
+		for i,v in pairs(GC(game.Players.LocalPlayer.Idled)) do
+			if v["Disable"] then
+				v["Disable"](v)
+			elseif v["Disconnect"] then
+				v["Disconnect"](v)
+			end
+		end
+	else
+        game.Players.LocalPlayer.Idled:Connect(function()
+            local VirtualUser = game:GetService("VirtualUser")
+            VirtualUser:CaptureController()
+            VirtualUser:ClickButton2(Vector2.new())
+        end)
+	end
+end)
+tab:Toggle("Auto Reset", false, function(val)
+    --credit IY
+    _G.cucu = val
+    while wait() do
+        if _G.cucu == false then break end
+        pcall(function()
+            game.Players.LocalPlayer.Character.Head:Destroy()
+        end)
+    end
+end)
+tab:Button("Kick",function()
+    game.Players.LocalPlayer:Kick('Unsub NPT chưa??')
+end)
+tab:Toggle("..",false,function()
+    lib:Nof("YOU WATCH SEX",5)
+end)

@@ -1,5 +1,5 @@
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/hoho_lib.lua", true))()
-local win = lib:Window("Cube X Hub","Blox Fruits",Color3.new(0.333333, 0.666667, 1))
+local win = lib:Window("Cube X Hub","Blox Fruits",Color3.new(246, 247, 0))
 local tab = win:Tab("Main")
 local label = tab:Label("Label", properties)
 label:NewLabel("Here", properties)
